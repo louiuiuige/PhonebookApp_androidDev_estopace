@@ -172,8 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 InputStream inputStream = getContentResolver().openInputStream(imageUri);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 if (bitmap != null) {
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
                     byte[] byteArray = stream.toByteArray();
 
                     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
